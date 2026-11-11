@@ -39,7 +39,7 @@ export default function About() {
     const environment = config.environment;
     const releaseUrl =
         version && version !== 'dev'
-            ? `https://github.com/cristian-home/sgte-app/releases/tag/v${version}`
+            ? `https://github.com/hbs-137/sgte-app/releases/tag/v${version}`
             : null;
 
     return (

@@ -143,10 +143,10 @@ Services in `compose.yaml`: PostgreSQL 18, Redis, Typesense (search), MinIO (S3 
 
 ### Repository & Dokploy Deployment
 
-- **GitHub**: `cristian-home/sgte-app`. Default working branch is `develop`; `main` is reserved for a future "stable initial version" that will eventually auto-deploy to production.
+- **GitHub**: `hbs-137/sgte-app` (transferred from `cristian-home/sgte-app` on 2026-11-11; public). Default working branch is `develop`; `main` is reserved for a future "stable initial version" that will eventually auto-deploy to production.
 - **Dokploy panel**: self-hosted on the VPS. The live app is the `SGTE Laravel App` service inside the `SGTE` project. Two services coexist: `SGTE Laravel App` (type: application, built from `docker/production/Dockerfile`) and `SGTE Services` (type: compose, runs Postgres/Redis/MinIO/Typesense/etc.).
 - **Naming caveat**: the Dokploy environment is labelled `production` but the running container has `APP_ENV=staging`. It's de facto a staging deploy used for client demos — do not treat it as real production.
-- **Deploys are manual.** Autodeploy is off on the Dokploy GitHub App integration, and `deploy-staging.yml` uses `workflow_dispatch`. Trigger a deploy either from GitHub Actions (Run workflow button) or from Dokploy's "Deploy" button on the SGTE Laravel App page.
+- **Deploys are manual.** Autodeploy is off. Since the repo transfer, both Dokploy services (app + compose) clone via `sourceType: git` from the public URL `https://github.com/hbs-137/sgte-app.git` (the GitHub App lost access); if the repo goes private, install the Dokploy GitHub App on `hbs-137` and switch both sources back to GitHub first. `deploy-staging.yml` uses `workflow_dispatch`. Trigger a deploy either from GitHub Actions (Run workflow button) or from Dokploy's "Deploy" button on the SGTE Laravel App page.
 - **Dokploy credentials** live in `.env` (gitignored): `DOKPLOY_URL`, `DOKPLOY_TOKEN`, `DOKPLOY_PROJECT_ID`, `DOKPLOY_ENVIRONMENT_ID`, `DOKPLOY_APP_ID`. Use `source .env` in bash to call the API. Do not commit these or echo them back.
 - **Known security debt**: Dokploy panel is exposed on `http://…:3000` (no TLS), and the API's `application.one` endpoint returns all service secrets in plain text when queried — prefer narrower endpoints. Pending: HTTPS for the panel, dedicated domain + Let's Encrypt for the app, rotating any secrets that have been observed in responses.
 

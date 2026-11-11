@@ -93,15 +93,15 @@ Servicios dentro del proyecto:
 
 | Servicio | Tipo | ID | Source |
 |---|---|---|---|
-| `sgte-app` | Application | `4XoeFL7NbK2M7TVDzRAIX` | GitHub `cristian-home/sgte-app`, branch `main`, Dockerfile `docker/production/Dockerfile` |
-| `sgte-services` | Compose | `f35acrb1i4DNrsr2J3qlz` | GitHub `cristian-home/sgte-app`, branch `main`, path `./compose.staging.yaml` |
+| `sgte-app` | Application | `4XoeFL7NbK2M7TVDzRAIX` | Git público `https://github.com/hbs-137/sgte-app.git`, branch `main`, Dockerfile `docker/production/Dockerfile` |
+| `sgte-services` | Compose | `f35acrb1i4DNrsr2J3qlz` | Git público `https://github.com/hbs-137/sgte-app.git`, branch `main`, path `./compose.staging.yaml` |
 
 Container name (generado por Dokploy): `linestur-sgte-app-n4plse`.
 
 ### GitHub
 
-- **Repo:** `cristian-home/sgte-app`
-- **GitHub App instalado en Dokploy:** `dokploy-linestur` (instalado durante esta sesión)
+- **Repo:** `hbs-137/sgte-app` (antes `cristian-home/sgte-app`, transferido 2026-11-11)
+- **GitHub App instalado en Dokploy:** `dokploy-linestur` (instalado en `cristian-home`; perdió acceso tras la transferencia del 2026-11-11 → Dokploy clona por Git público. Instalarla en `hbs-137` antes de hacer el repo privado)
 - **Branches relevantes:** `develop` (integración), `main` (releases, deploy a prod)
 - **Tag actual:** `v1.0.0`
 - **Secrets de GitHub Actions necesarios** (no creados todavía — ver pendientes):
@@ -423,7 +423,7 @@ El push del tag dispara el workflow `deploy-production.yml` → `application.red
 ### Runbook: configurar secrets de GitHub
 
 ```
-Repo: cristian-home/sgte-app → Settings → Secrets and variables → Actions → New repository secret
+Repo: hbs-137/sgte-app → Settings → Secrets and variables → Actions → New repository secret
 
 DOKPLOY_PROD_URL    = http://167.86.74.55:3000
 DOKPLOY_PROD_TOKEN  = <x-api-key del Dokploy del cliente, copiar de .env local>
