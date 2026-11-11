@@ -94,7 +94,7 @@ services:
             retries: 5
             timeout: 7s
     minio:
-        image: 'minio/minio:latest'
+        image: 'pgsty/minio:RELEASE.2026-08-04T00-00-00Z'
         ports:
             - '${FORWARD_MINIO_PORT:-9000}:9000'
             - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
